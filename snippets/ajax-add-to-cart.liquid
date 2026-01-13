@@ -1,0 +1,12 @@
+{% comment %}
+  AJAX Add to Cart Button
+  Only shows on template: product.special
+{% endcomment %}
+
+{% if product.template_suffix == 'test-template-product' %}
+  <button 
+    class="ajax-add-to-cart button"
+    data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+    {{ 'products.product.add_to_cart' | t }}
+  </button>
+{% endif %}

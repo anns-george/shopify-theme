@@ -1,0 +1,89 @@
+<section class="simple-text">
+
+
+{% for block in section.blocks %}
+{% case block.type %}
+{% when 'text_block' %}
+  <p
+  class="simple-text-content"
+  style="
+  --size: {{ block.settings.text_size }}px;
+  text-align:{{ block.settings.text_align }};
+  ">
+    {{ block.settings.text }}
+  </p>
+
+{% endcase %}
+ {% endfor %}
+  {% if section.settings.button_label != blank %}
+  <a
+  href="{{section.settings.button_link}}"
+  class="simple-text_button"
+  >
+  {{section.settings.button_label}}
+  </a>
+{% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Simple Text",
+  "blocks":[
+{
+"type":"text_block",
+"name":"Text_Block",
+"settings":[
+{
+"type":"text",
+"id":"text",
+"label":"Text to display",
+"default":"hi"
+},
+{
+"type":"range",
+"id":"text_size",
+"label":"Text Size",
+"min":12,
+"max":40,
+"step":1,
+"unit":"px",
+"default":20
+},{
+"type":"select",
+"id":"text_align",
+"label":"Text Alignment",
+"options":[
+{"value":"left","label":"Left"},
+{"value":"center","label":"Center"},
+{"value":"right","label":"Right"}
+],
+"default":"left"
+}
+]
+}
+],
+  "settings": [
+    {
+    "type":"text",
+    "id":"button_label",
+    "label":"Button Text",
+    "default":"Shop Now"
+    },
+    {
+    "type":"url",
+    "id":"button_link",
+    "label":"url",
+    "default":"/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Simple Text"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+

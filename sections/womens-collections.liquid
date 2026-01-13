@@ -1,0 +1,63 @@
+{% comment %}
+  Womens Collections Section
+  Loops through one or two collections
+{% endcomment %}
+
+<div class="womens-collections-section">
+
+  {% assign first_collection = section.settings.collection %}
+  {% assign second_collection = section.settings.collection_2 %}
+
+  {% if first_collection != blank %}
+    <h2>{{ first_collection.title }}</h2>
+    <div class="collection-products">
+      {% for product in first_collection.products limit: 4 %}
+        <div class="product-card">
+          <a href="{{ product.url }}">
+            {{ product.featured_image | image_url: width: 400 | image_tag }}
+            <h3>{{ product.title }}</h3>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if second_collection != blank %}
+    <h2>{{ second_collection.title }}</h2>
+    <div class="collection-products">
+      {% for product in second_collection.products limit: 4 %}
+        <div class="product-card">
+          <a href="{{ product.url }}">
+            {{ product.featured_image | image_url: width: 400 | image_tag }}
+            <h3>{{ product.title }}</h3>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+</div>
+
+
+{% schema %}
+{
+  "name": "Women’s Collections",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select first collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Select second collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Women’s Collections"
+    }
+  ]
+}
+{% endschema %}

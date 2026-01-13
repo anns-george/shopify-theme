@@ -1,0 +1,95 @@
+<section class="simple-text-section">
+  <h2>{{ section.settings.heading }}</h2>
+
+  <div class="blocks">
+    {% for block in section.blocks %}
+      {% case block.type %}
+
+        {% when 'text' %}
+          <p {{ block.shopify_attributes }}>
+            {{ block.settings.text }}
+          </p>
+
+        {% when 'button' %}
+          <a
+            href="{{ block.settings.link }}"
+            class="button"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.label }}
+          </a>
+
+        {% when 'image' %}
+          {% if block.settings.image %}
+            <img
+              src="{{ block.settings.image | image_url: width: 400 }}"
+              alt=""
+              {{ block.shopify_attributes }}
+            >
+          {% endif %}
+
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Section with Blocks",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Section Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "This is a text block"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button text",
+          "default": "Enter"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Simple Section with Blocks"
+    }
+  ]
+}
+{% endschema %}

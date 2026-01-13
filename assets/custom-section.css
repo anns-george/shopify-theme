@@ -1,0 +1,25 @@
+.simple-text {
+  padding: 40px;
+  text-align: center;
+}
+
+.simple-text-content {
+  color: black;
+  font-size: var(--size);
+  margin-bottom: 20px;
+}
+
+.simple-text_button {
+  display: inline-block;
+  padding: 14px 28px;
+  background: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.simple-text_button:hover {
+  transform: scale(1.08);
+  background: #333;
+}

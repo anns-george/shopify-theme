@@ -1,0 +1,37 @@
+{% schema %}
+{
+  "name": "Custom Products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collection Products"
+    }
+  ]
+}
+{% endschema %}
+
+{% if section.settings.collection %}
+  <div class="collection-grid">
+    {% for product in section.settings.collection.products %}
+      {% assign variant = product.selected_or_first_available_variant %}
+
+      <div class="product-card">
+        <h3>{{ product.title }}</h3>
+        <p>{{ variant.price | money }}</p>
+
+        <button
+          class="ajax-add-to-cart"
+          data-variant-id="{{ variant.id }}"
+        >
+          Add to Cart
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

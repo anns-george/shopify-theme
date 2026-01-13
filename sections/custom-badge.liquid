@@ -1,0 +1,19 @@
+<section class="custom-badge">
+  <h3>Custom Product Badge</h3>
+
+  {% if product %}
+    <p>Product: {{ product.title }}</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Custom Badge",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom Badge"
+    }
+  ]
+}
+{% endschema %}
