@@ -613,9 +613,9 @@
     },
     "simple_text_t8rwc8": {
       "type": "simple-text",
+      "disabled": true,
       "name": "Simple Text",
       "settings": {
-        "text": "Hello Shopify",
         "button_label": "Shop Now",
         "button_link": "shopify://collections/all"
       }
