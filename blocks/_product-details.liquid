@@ -56,30 +56,22 @@
         </div>
       </div>
     {% endif %}
-{% assign faqs = product.metafields.custom.product_faqs.value %}
+{% assign faqs = product.metafields.custom.faqs.value %}
 
 {% if faqs != blank %}
-<div class="product-faqs">
-<h3>Frequently Asked Questions</h3>
+  <div class="product-faqs">
+    <h3>FAQs</h3>
 
-    <div class="faq-list">
+    {% for faq in faqs %}
+      <details class="faq-item">
+        <summary>{{ faq.question.value }}</summary>
 
-      {% for faq in faqs %}
-<div class="faq-item">
-<h4 class="faq-question">
-
-            {{ faq.question }}
-</h4>
-<div class="faq-answer">
-
-            {{ faq.answer | newline_to_br }}
-</div>
-</div>
-
-      {% endfor %}
-</div>
-</div>
-
+        <div class="faq-answer">
+          {{ faq.answer | metafield_tag}}
+        </div>
+      </details>
+    {% endfor %}
+  </div>
 {% endif %}
 
 
